@@ -20,8 +20,9 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserEntity {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $UserEntityCopyWith<$Res> {
   factory $UserEntityCopyWith(
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res>;
-  $Res call({int id, String name});
+  $Res call({String id, String name, String email});
 }
 
 /// @nodoc
@@ -49,52 +50,63 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
-  factory _$UserEntityCopyWith(
-          _UserEntity value, $Res Function(_UserEntity) then) =
-      __$UserEntityCopyWithImpl<$Res>;
+abstract class _$$_UserEntityCopyWith<$Res>
+    implements $UserEntityCopyWith<$Res> {
+  factory _$$_UserEntityCopyWith(
+          _$_UserEntity value, $Res Function(_$_UserEntity) then) =
+      __$$_UserEntityCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name});
+  $Res call({String id, String name, String email});
 }
 
 /// @nodoc
-class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
-    implements _$UserEntityCopyWith<$Res> {
-  __$UserEntityCopyWithImpl(
-      _UserEntity _value, $Res Function(_UserEntity) _then)
-      : super(_value, (v) => _then(v as _UserEntity));
+class __$$_UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
+    implements _$$_UserEntityCopyWith<$Res> {
+  __$$_UserEntityCopyWithImpl(
+      _$_UserEntity _value, $Res Function(_$_UserEntity) _then)
+      : super(_value, (v) => _then(v as _$_UserEntity));
 
   @override
-  _UserEntity get _value => super._value as _UserEntity;
+  _$_UserEntity get _value => super._value as _$_UserEntity;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? email = freezed,
   }) {
-    return _then(_UserEntity(
+    return _then(_$_UserEntity(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -102,38 +114,33 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserEntity with DiagnosticableTreeMixin implements _UserEntity {
-  const _$_UserEntity({required this.id, required this.name});
+class _$_UserEntity implements _UserEntity {
+  const _$_UserEntity(
+      {required this.id, required this.name, required this.email});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
+  @override
+  final String email;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEntity(id: $id, name: $name)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserEntity'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name));
+  String toString() {
+    return 'UserEntity(id: $id, name: $name, email: $email)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserEntity &&
+            other is _$_UserEntity &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.email, email));
   }
 
   @JsonKey(ignore: true)
@@ -141,32 +148,39 @@ class _$_UserEntity with DiagnosticableTreeMixin implements _UserEntity {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(email));
 
   @JsonKey(ignore: true)
   @override
-  _$UserEntityCopyWith<_UserEntity> get copyWith =>
-      __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
+  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
+      __$$_UserEntityCopyWithImpl<_$_UserEntity>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserEntityToJson(this);
+    return _$$_UserEntityToJson(
+      this,
+    );
   }
 }
 
 abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
-      {required final int id, required final String name}) = _$_UserEntity;
+      {required final String id,
+      required final String name,
+      required final String email}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
+  @override
+  String get email;
   @override
   @JsonKey(ignore: true)
-  _$UserEntityCopyWith<_UserEntity> get copyWith =>
+  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }

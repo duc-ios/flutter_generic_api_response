@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_generic_api_response/extensions/safe_call_extensions.dart';
-import 'package:flutter_generic_api_response/network/api_client.dart';
-import 'package:flutter_generic_api_response/ui/page/login/login_page_bloc.dart';
+
+import '../../../extensions/safe_call_extensions.dart';
+import '../../../api/api_client.dart';
+import '../../../api/services/user_services/user_services.dart';
+import 'login_page_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = LoginPageBloc(context.read<ApiClient>().userServices);
+    final bloc = LoginPageBloc(UserServices(context.read<ApiClient>()));
 
     const margin = 16.0;
 
@@ -65,18 +67,24 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       MaterialButton(
                           color: Colors.blue,
-                          child: const Text("Login"),
+                          child: const Text('Login'),
                           onPressed: () {
                             bloc.add(LoginPageLoginAttempted(
                                 _userNameController.text,
                                 _passwordController.text));
+                          }),
+                      MaterialButton(
+                          color: Colors.blue,
+                          child: const Text('Fetch users'),
+                          onPressed: () {
+                            bloc.add(LoginPageFetchUsers());
                           }),
                       const SizedBox(
                         height: margin,
                       ),
                       if (bloc.state.status != null)
                         Text(
-                          "Status\n${bloc.state.status?.getOrEmpty()}",
+                          'Status\n${bloc.state.status?.getOrEmpty()}',
                           textAlign: TextAlign.center,
                         ),
                     ],

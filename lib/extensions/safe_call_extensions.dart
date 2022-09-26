@@ -16,6 +16,6 @@ extension ListExtensions on List {
 extension StringExtensions on String? {
   String getOrEmpty() {
     var self = this;
-    return self is String ? self : "";
+    return self is String ? self : '';
   }
 }

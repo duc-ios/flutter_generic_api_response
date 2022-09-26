@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_request.freezed.dart';
-
 part 'login_request.g.dart';
 
 @freezed

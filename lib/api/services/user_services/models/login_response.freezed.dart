@@ -74,11 +74,11 @@ class _$LoginResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LoginResponseCopyWith<$Res>
+abstract class _$$_LoginResponseCopyWith<$Res>
     implements $LoginResponseCopyWith<$Res> {
-  factory _$LoginResponseCopyWith(
-          _LoginResponse value, $Res Function(_LoginResponse) then) =
-      __$LoginResponseCopyWithImpl<$Res>;
+  factory _$$_LoginResponseCopyWith(
+          _$_LoginResponse value, $Res Function(_$_LoginResponse) then) =
+      __$$_LoginResponseCopyWithImpl<$Res>;
   @override
   $Res call({UserEntity user, String accessToken});
 
@@ -87,22 +87,22 @@ abstract class _$LoginResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LoginResponseCopyWithImpl<$Res>
+class __$$_LoginResponseCopyWithImpl<$Res>
     extends _$LoginResponseCopyWithImpl<$Res>
-    implements _$LoginResponseCopyWith<$Res> {
-  __$LoginResponseCopyWithImpl(
-      _LoginResponse _value, $Res Function(_LoginResponse) _then)
-      : super(_value, (v) => _then(v as _LoginResponse));
+    implements _$$_LoginResponseCopyWith<$Res> {
+  __$$_LoginResponseCopyWithImpl(
+      _$_LoginResponse _value, $Res Function(_$_LoginResponse) _then)
+      : super(_value, (v) => _then(v as _$_LoginResponse));
 
   @override
-  _LoginResponse get _value => super._value as _LoginResponse;
+  _$_LoginResponse get _value => super._value as _$_LoginResponse;
 
   @override
   $Res call({
     Object? user = freezed,
     Object? accessToken = freezed,
   }) {
-    return _then(_LoginResponse(
+    return _then(_$_LoginResponse(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ class __$LoginResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LoginResponse with DiagnosticableTreeMixin implements _LoginResponse {
+class _$_LoginResponse implements _LoginResponse {
   const _$_LoginResponse({required this.user, required this.accessToken});
 
   factory _$_LoginResponse.fromJson(Map<String, dynamic> json) =>
@@ -129,24 +129,15 @@ class _$_LoginResponse with DiagnosticableTreeMixin implements _LoginResponse {
   final String accessToken;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginResponse(user: $user, accessToken: $accessToken)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginResponse'))
-      ..add(DiagnosticsProperty('user', user))
-      ..add(DiagnosticsProperty('accessToken', accessToken));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoginResponse &&
+            other is _$_LoginResponse &&
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality()
                 .equals(other.accessToken, accessToken));
@@ -161,12 +152,14 @@ class _$_LoginResponse with DiagnosticableTreeMixin implements _LoginResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$LoginResponseCopyWith<_LoginResponse> get copyWith =>
-      __$LoginResponseCopyWithImpl<_LoginResponse>(this, _$identity);
+  _$$_LoginResponseCopyWith<_$_LoginResponse> get copyWith =>
+      __$$_LoginResponseCopyWithImpl<_$_LoginResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoginResponseToJson(this);
+    return _$$_LoginResponseToJson(
+      this,
+    );
   }
 }
 
@@ -179,11 +172,11 @@ abstract class _LoginResponse implements LoginResponse {
       _$_LoginResponse.fromJson;
 
   @override
-  UserEntity get user => throw _privateConstructorUsedError;
+  UserEntity get user;
   @override
-  String get accessToken => throw _privateConstructorUsedError;
+  String get accessToken;
   @override
   @JsonKey(ignore: true)
-  _$LoginResponseCopyWith<_LoginResponse> get copyWith =>
+  _$$_LoginResponseCopyWith<_$_LoginResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

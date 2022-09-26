@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_generic_api_response/extensions/safe_call_extensions.dart';
-import 'package:flutter_generic_api_response/network/base/api_result.dart';
-import 'package:flutter_generic_api_response/network/services/user_services/model/login_request.dart';
-import 'package:flutter_generic_api_response/network/services/user_services/model/login_response.dart';
-import 'package:flutter_generic_api_response/network/services/user_services/user_services.dart';
+
+import '../../../api/services/user_services/models/login_request.dart';
+import '../../../api/services/user_services/user_services.dart';
 
 abstract class LoginPageEvent {}
 
@@ -22,24 +19,41 @@ class LoginPageLoginAttempted extends LoginPageEvent {
   LoginPageLoginAttempted(this.username, this.password);
 }
 
+class LoginPageFetchUsers extends LoginPageEvent {}
+
 class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
   final UserServices userServices;
 
   LoginPageBloc(this.userServices) : super(LoginPageState()) {
     on<LoginPageLoginAttempted>((event, emit) async {
+      if (event.username.isEmpty || event.password.isEmpty) {
+        return emit(LoginPageState(
+            isLoading: false, status: 'Please enter username and password'));
+      }
+
       emit(LoginPageState(isLoading: true));
       final result = await userServices.login(
           LoginRequest(username: event.username, password: event.password));
 
-      if (result is Success<LoginResponse>) {
-        emit(LoginPageState(
-            isLoading: false, status: "Welcome ${result.data.user.name}"));
-      } else {
-        final errorMessage =
-            result.asOrNull<Failed>()?.errors.firstOrNull()?.message ??
-                "Something went wrong";
+      result.fold((l) {
+        final errorMessage = l.message;
         emit(LoginPageState(isLoading: false, status: errorMessage));
-      }
+      }, (r) {
+        emit(
+            LoginPageState(isLoading: false, status: 'Welcome ${r.user.name}'));
+      });
+    });
+
+    on<LoginPageFetchUsers>((event, emit) async {
+      emit(LoginPageState(isLoading: true));
+      final result = await userServices.fetchUsers();
+      result.fold((l) {
+        final errorMessage = l.message;
+        emit(LoginPageState(isLoading: false, status: errorMessage));
+      }, (r) {
+        emit(LoginPageState(
+            isLoading: false, status: 'Users length: ${r.length}'));
+      });
     });
   }
 }

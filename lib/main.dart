@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_generic_api_response/network/api_client.dart';
-import 'package:flutter_generic_api_response/ui/page/login/login_page.dart';
+import 'api/api_client.dart';
+import 'ui/page/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());

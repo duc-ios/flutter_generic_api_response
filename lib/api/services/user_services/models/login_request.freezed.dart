@@ -64,31 +64,32 @@ class _$LoginRequestCopyWithImpl<$Res> implements $LoginRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoginRequestCopyWith<$Res>
+abstract class _$$_LoginRequestCopyWith<$Res>
     implements $LoginRequestCopyWith<$Res> {
-  factory _$LoginRequestCopyWith(
-          _LoginRequest value, $Res Function(_LoginRequest) then) =
-      __$LoginRequestCopyWithImpl<$Res>;
+  factory _$$_LoginRequestCopyWith(
+          _$_LoginRequest value, $Res Function(_$_LoginRequest) then) =
+      __$$_LoginRequestCopyWithImpl<$Res>;
   @override
   $Res call({String username, String password});
 }
 
 /// @nodoc
-class __$LoginRequestCopyWithImpl<$Res> extends _$LoginRequestCopyWithImpl<$Res>
-    implements _$LoginRequestCopyWith<$Res> {
-  __$LoginRequestCopyWithImpl(
-      _LoginRequest _value, $Res Function(_LoginRequest) _then)
-      : super(_value, (v) => _then(v as _LoginRequest));
+class __$$_LoginRequestCopyWithImpl<$Res>
+    extends _$LoginRequestCopyWithImpl<$Res>
+    implements _$$_LoginRequestCopyWith<$Res> {
+  __$$_LoginRequestCopyWithImpl(
+      _$_LoginRequest _value, $Res Function(_$_LoginRequest) _then)
+      : super(_value, (v) => _then(v as _$_LoginRequest));
 
   @override
-  _LoginRequest get _value => super._value as _LoginRequest;
+  _$_LoginRequest get _value => super._value as _$_LoginRequest;
 
   @override
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
   }) {
-    return _then(_LoginRequest(
+    return _then(_$_LoginRequest(
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -103,7 +104,7 @@ class __$LoginRequestCopyWithImpl<$Res> extends _$LoginRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LoginRequest with DiagnosticableTreeMixin implements _LoginRequest {
+class _$_LoginRequest implements _LoginRequest {
   const _$_LoginRequest({required this.username, required this.password});
 
   factory _$_LoginRequest.fromJson(Map<String, dynamic> json) =>
@@ -115,24 +116,15 @@ class _$_LoginRequest with DiagnosticableTreeMixin implements _LoginRequest {
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'LoginRequest(username: $username, password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginRequest'))
-      ..add(DiagnosticsProperty('username', username))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoginRequest &&
+            other is _$_LoginRequest &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.password, password));
   }
@@ -146,12 +138,14 @@ class _$_LoginRequest with DiagnosticableTreeMixin implements _LoginRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$LoginRequestCopyWith<_LoginRequest> get copyWith =>
-      __$LoginRequestCopyWithImpl<_LoginRequest>(this, _$identity);
+  _$$_LoginRequestCopyWith<_$_LoginRequest> get copyWith =>
+      __$$_LoginRequestCopyWithImpl<_$_LoginRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoginRequestToJson(this);
+    return _$$_LoginRequestToJson(
+      this,
+    );
   }
 }
 
@@ -164,11 +158,11 @@ abstract class _LoginRequest implements LoginRequest {
       _$_LoginRequest.fromJson;
 
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
-  _$LoginRequestCopyWith<_LoginRequest> get copyWith =>
+  _$$_LoginRequestCopyWith<_$_LoginRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
